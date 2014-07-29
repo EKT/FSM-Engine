@@ -9,6 +9,12 @@ FSM Engine makes it easy to define and execute simple [finite state machines](ht
 
 This library was originally inspired by [Harel Statecharts](http://www.wisdom.weizmann.ac.il/~dharel/papers/Statecharts.pdf) and the [State Design Pattern](http://en.wikipedia.org/wiki/State_pattern) and is implemented by the [National Documentation Centre](http://www.ekt.gr/en/) of Greece. Also, it is successfully incorporated in a few production applications, including the [National Archive of PhD Theses](http://www.didaktorika.gr/eadd/?locale=en) and the [National Interloaning System of Scientific and Technological Libraries](http://eskep.ekt.gr).
 
+#Features
+
+* Basic FSM elements: States, Events, Transitions.
+* Advanced FSM blocks: Actions, Guard conditions, Branches.
+* Define your Finite State Machine in a Spring context XML.
+* Use standard Spring annotation for getting the workflow engine.
 
 #Quick Start
 
