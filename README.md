@@ -10,3 +10,23 @@ FSM Engine makes it easy to define and execute simple [finite state machines](ht
 This library was originally inspired by [Harel Statecharts](http://www.wisdom.weizmann.ac.il/~dharel/papers/Statecharts.pdf) and the [State Design Pattern](http://en.wikipedia.org/wiki/State_pattern) and is implemented by the [National Documentation Centre](http://www.ekt.gr/en/) of Greece. Also, it is successfully incorporated in a few production applications, including the [National Archive of PhD Theses](http://www.didaktorika.gr/eadd/?locale=en) and the [National Interloaning System of Scientific and Technological Libraries](http://eskep.ekt.gr).
 
 
+#Quick Start
+
+The recommended way to get started using FSM Engine in your project is with a dependency management system. Specifically, FSM Engine uses [Apache Maven](http://maven.apache.org/) for project management.
+
+Clone this git repository, and use maven install to add it in your local maven repository:
+
+```sh
+git clone https://github.com/EKT/FSM-Engine.git
+cd FSM-Engine
+mvn clean install
+```
+
+Include the dependency in pom.xml of your project:
+```xml
+<dependency>
+  <groupId>gr.ekt</groupId>
+  <artifactId>fsm-engine</artifactId>
+  <version>0.9.0</version>
+</dependency>
+```
