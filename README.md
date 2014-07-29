@@ -2,3 +2,11 @@ FSM-Engine
 ==========
 
 Easily define Finite State Machines in your Java applications, using Spring.
+
+#Introduction
+
+FSM Engine makes it easy to define and execute simple [finite state machines](http://en.wikipedia.org/wiki/Finite-state_machine), and thus workflows, in your Java applications. It really helps in cases where the behaviour of an object needs to be changed automatically, at runtime, depending on its state.
+
+This library was originally inspired by [Harel Statecharts](http://www.wisdom.weizmann.ac.il/~dharel/papers/Statecharts.pdf) and the [State Design Pattern](http://en.wikipedia.org/wiki/State_pattern) and is implemented by the [National Documentation Centre](http://www.ekt.gr/en/) of Greece. Also, it is successfully incorporated in a few production applications, including the [National Archive of PhD Theses](http://www.didaktorika.gr/eadd/?locale=en) and the [National Interloaning System of Scientific and Technological Libraries](http://eskep.ekt.gr).
+
+
