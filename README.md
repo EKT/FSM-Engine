@@ -13,8 +13,8 @@ This library was originally inspired by [Harel Statecharts](http://www.wisdom.we
 
 * Basic FSM elements: States, Events, Transitions.
 * Advanced FSM blocks: Actions, Guard conditions, Branches.
-* Define your Finite State Machine in a Spring context XML.
-* Use standard Spring annotation for getting the workflow engine.
+* Define your Finite State Machine in a plain Spring context XML.
+* Use standard Spring annotations for working with the workflow engine.
 
 #Quick Start
 
