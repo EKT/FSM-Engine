@@ -97,7 +97,7 @@ private Event press;
 Let's fire the event!
 
 ```java
-void switchWasPressed(Switch input) {
+void ourSwitchWasPressed(Switch input) {
 	format("Status: %s\n", input.getStateName()); // OFF
 	engine.processEvent(press, input);
 	format("Status: %s\n", input.getStateName()); // ON
