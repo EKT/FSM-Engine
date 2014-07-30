@@ -99,7 +99,7 @@ Let's fire the event!
 ```java
 void press(Switch input) {
 	format("Status: %s\n", input.getStateName()); // OFF
-	engine.processEvent(press, switch);
+	engine.processEvent(press, input);
 	format("Status: %s\n", input.getStateName()); // ON
 }
 ```
