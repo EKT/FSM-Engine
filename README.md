@@ -20,7 +20,7 @@ This library was originally inspired by [Harel Statecharts](http://www.wisdom.we
 
 The recommended way to get started using FSM Engine in your project is with a dependency management system. Specifically, FSM Engine uses [Apache Maven](http://maven.apache.org/) for project management.
 
-Clone this git repository, and add the artifact your local maven repository:
+Clone this git repository, and add the artifact to your local maven repository:
 ```sh
 git clone https://github.com/EKT/FSM-Engine.git
 cd FSM-Engine
