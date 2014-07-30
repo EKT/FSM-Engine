@@ -34,4 +34,5 @@ Finally, include the dependency in pom.xml of your project:
   <version>0.9.0</version>
 </dependency>
 ```
-Examine the tests, under src/test/java, for a lot of practical examples. Moreover, [Wiki](https://github.com/EKT/FSM-Engine/wiki) provides complimentary information on using the library.
+Examine the tests, under src/test/java, for a lot of practical examples. 
+As always, [Wiki](https://github.com/EKT/FSM-Engine/wiki) provides complimentary information on using the library.
