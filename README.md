@@ -53,7 +53,7 @@ public class Switch implements StateContext {
 }
 ```
 
-Then, we should declare the basic elements in out Spring context.
+Then, we should declare the basic elements in our Spring context.
 
 ```xml
     <!-- Event -->
