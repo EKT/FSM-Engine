@@ -37,3 +37,72 @@ Finally, include the dependency in pom.xml of your project:
 Examine the tests, under src/test/java, for a lot of practical examples. 
 
 As always, our [Wiki](https://github.com/EKT/FSM-Engine/wiki) provides complimentary information on using the library.
+
+
+#3 minute demo
+
+Suppose a simple Switch that can be either OFF or ON.
+
+![The state diagram of a simple switch](https://cloud.githubusercontent.com/assets/5664469/3731138/0db9e530-16e5-11e4-8678-87e9e0c36ad8.png)
+
+At first, our domain object should implement the interface gr.ekt.fsmengine.api.StateContext.
+
+```java
+public class Switch implements StateContext {
+	// actual implementation
+}
+```
+
+Then, we should declare the basic elements in out Spring context.
+
+```xml
+    <!-- Event -->
+    <bean id="eventPress" class="gr.ekt.fsmengine.api.DefaultEvent">
+        <property name="name" value="EVENT_PRESS"/>
+    </bean>
+
+    <!-- States -->
+    <bean id="stateOff" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_OFF"/>
+        <property name="eventTransitionsMap">
+            <map>
+                <entry key-ref="eventPress" value-ref="transition"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="stateOn" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_ON"/>
+    </bean>
+
+    <!-- Transition -->
+    <bean id="transition" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateOff" />
+        <property name="toState" ref="stateOn" />
+    </bean>
+```
+
+So, we have one event, two states and one transition. The "press" event moves the switch from OFF to ON.
+
+Back to our Java code, we just need a reference to the FSM engine and the event.
+
+```java
+@Autowired
+private SpringFsm engine;
+
+@Autowired
+private Event press;
+```
+
+Let's fire the event!
+
+```java
+void press(Switch switch) {
+	System.out.format("Status: %s\n", switch.getStateName()); // OFF
+	engine.processEvent(press, switch);
+	System.out.format("Status: %s\n", switch.getStateName()); // ON
+}
+```
+
+![Executing example 1](https://cloud.githubusercontent.com/assets/5664469/3731205/ab66c306-16e6-11e4-95cc-276b08de6611.png)
+
