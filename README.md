@@ -82,7 +82,7 @@ Then, we should declare the basic elements in our Spring context.
     </bean>
 ```
 
-So, we have one event, two states and one transition. The "press" event moves the switch from OFF to ON.
+So, we have one event, two states and one transition. In fact, the "press" event moves the switch from OFF to ON.
 
 Back to our Java code, we just need a reference to the FSM engine and the event.
 
