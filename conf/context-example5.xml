@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:context="http://www.springframework.org/schema/context"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                                           http://www.springframework.org/schema/context
+                                   http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+    
+    <!-- Events -->
+    <bean id="eventRead" class="gr.ekt.fsmengine.api.DefaultEvent">
+        <property name="name" value="EVENT_READ"/>
+    </bean>
+    
+    <bean id="eventTimeout" class="gr.ekt.fsmengine.api.DefaultEvent">
+        <property name="name" value="EVENT_TIMEOUT"/>
+    </bean>
+    
+    <bean id="eventCancel" class="gr.ekt.fsmengine.api.DefaultEvent">
+        <property name="name" value="EVENT_CANCEL"/>
+    </bean>
+    
+    <bean id="eventReject" class="gr.ekt.fsmengine.api.DefaultEvent">
+        <property name="name" value="EVENT_REJECT"/>
+    </bean>
+    
+    <bean id="eventDispatch" class="gr.ekt.fsmengine.api.DefaultEvent">
+        <property name="name" value="EVENT_DISPATCH"/>
+    </bean>
+    
+    <!-- States -->
+    <bean id="stateCan" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_CAN"/>
+        <property name="eventTransitionsMap">
+            <map>
+                <entry key-ref="eventTimeout" value-ref="transitionD"/>
+                <entry key-ref="eventReject" value-ref="transitionD"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="stateOrd" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_ORD"/>
+        <property name="eventTransitionsMap">
+            <map>
+                <entry key-ref="eventRead" value-ref="transitionA"/>
+                <entry key-ref="eventTimeout" value-ref="transitionB"/>
+                <entry key-ref="eventCancel" value-ref="transitionC"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="stateRej" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_REJ"/>
+    </bean>
+    
+    <bean id="stateRead" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_READ"/>
+        <property name="eventTransitionsMap">
+            <map>
+                <entry key-ref="eventDispatch" value-ref="transitionF"/>
+                <entry key-ref="eventTimeout" value-ref="transitionE"/>
+                <entry key-ref="eventReject" value-ref="transitionE"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="stateAcc" class="gr.ekt.fsmengine.api.DefaultState">
+        <property name="stateName" value="STATE_ACC"/>
+    </bean>
+        
+    <!-- Transitions -->
+    <bean id="transitionA" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateOrd" />
+        <property name="toState" ref="stateRead" />
+    </bean>
+    
+    <bean id="transitionB" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateOrd" />
+        <property name="toState" ref="stateRej" />
+    </bean>
+    
+    <bean id="transitionC" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateOrd" />
+        <property name="toState" ref="stateCan" />
+    </bean>
+    
+    <bean id="transitionD" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateCan" />
+        <property name="toState" ref="stateRej" />
+    </bean>
+    
+    <bean id="transitionE" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateRead" />
+        <property name="toState" ref="stateRej" />
+    </bean>
+    
+    <bean id="transitionF" class="gr.ekt.fsmengine.api.DefaultTransition">
+        <property name="fromState" ref="stateRead" />
+        <property name="toState" ref="stateAcc" />
+    </bean>
+
+</beans>
