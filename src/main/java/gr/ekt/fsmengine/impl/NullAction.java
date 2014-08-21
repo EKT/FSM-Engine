@@ -3,9 +3,12 @@
  */
 package gr.ekt.fsmengine.impl;
 
+import gr.ekt.fsmengine.api.AbstractAction;
 import gr.ekt.fsmengine.api.ActionException;
 import gr.ekt.fsmengine.api.StateContext;
-import gr.ekt.fsmengine.api.AbstractAction;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * An action that does nothing.
@@ -14,11 +17,13 @@ import gr.ekt.fsmengine.api.AbstractAction;
  */
 public class NullAction extends AbstractAction {
 
+	private static final Log LOGGER = LogFactory.getLog(NullAction.class);
+	
 	/* (non-Javadoc)
 	 * @see gr.ekt.liboms.model.fsm.impl.AbstractAction#execute(gr.ekt.liboms.model.fsm.StateContext)
 	 */
 	@Override
 	public void execute(StateContext stateContext) throws ActionException {
-		log.debug("Executing NullAction. Doing nothing...");
+		LOGGER.debug("Executing NullAction. Doing nothing...");
 	}
 }

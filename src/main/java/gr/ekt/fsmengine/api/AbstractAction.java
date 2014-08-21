@@ -12,7 +12,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public abstract class AbstractAction implements Action {
 	
-	protected final Log log = LogFactory.getLog(getClass());
+	private static final Log LOGGER = LogFactory.getLog(AbstractAction.class);
 	
 	public abstract void execute(StateContext stateContext) throws ActionException;
 
@@ -22,8 +22,8 @@ public abstract class AbstractAction implements Action {
      * @throws ActionException
      */
     public void rollback(StateContext stateContext) throws ActionException {
-        if(log.isDebugEnabled()) {
-            log.debug("Empty rollback for Action [" + toString() + "]");
+        if(LOGGER.isDebugEnabled()) {
+            LOGGER.debug("Empty rollback for Action [" + toString() + "]");
         }
     }
 

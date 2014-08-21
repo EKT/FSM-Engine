@@ -25,14 +25,14 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
 
     boolean transactional = false;
     private ApplicationContext applicationContext;
-    protected final Log log = LogFactory.getLog(getClass());
+    private static final Log LOGGER = LogFactory.getLog(SpringFsm.class);
 	
 	public void processEvent(Event event, StateContext stateContext) throws FsmException {
 		if(!isValidEvent(stateContext, event)) {
             throw new InvalidEventException("Event [${event?.name}] for State [${stateContext?.stateName}] is not valid!");
         }
-        if (log.isDebugEnabled()) {
-            log.debug("\n--- STARTING FSM ENGINE ---");
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("\n--- STARTING FSM ENGINE ---");
         }
         State currentState = getCurrentState(stateContext);
         currentState.processEvent(event, stateContext);
@@ -50,8 +50,7 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
 	public State getCurrentState(StateContext stateContext) throws FsmException {
         if(stateContext == null) {
             throw new InvalidStateContextException("StateContext can't be null.");
-        }
-        else if(stateContext.getStateName() == null) {
+        } else if(stateContext.getStateName() == null) {
             throw new InvalidStateNameException(
                     "StateName (for StateContext [" + stateContext.getClass().getSimpleName() + "]) can't be null");
         }
@@ -68,7 +67,7 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
 	 */
 	public String getKey(String name) {
 		String[] tokens = StringUtils.split(name, SEPARATOR_CHAR);
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < tokens.length; i++) {
 			String token = tokens[i].toLowerCase();
 			if(i != 0) {
@@ -87,10 +86,10 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
     public State getStateBeanForStateName(String stateNameKey) throws InvalidStateNameException {
         try {
             return (State) applicationContext.getBean(stateNameKey);
-        }
-        catch (BeansException e) {
-            throw new InvalidStateNameException(
-                    "No State Bean found for StateName with key [" + stateNameKey + "]");
+        } catch (BeansException e) {
+        	String message = "No State Bean found for StateName with key [" + stateNameKey + "]";
+        	LOGGER.error(message, e);
+            throw new InvalidStateNameException(message);
         }
     }
 

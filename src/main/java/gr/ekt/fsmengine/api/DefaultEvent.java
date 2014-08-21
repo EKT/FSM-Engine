@@ -1,14 +1,11 @@
 package gr.ekt.fsmengine.api;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * @author Dimitris Zavaliadis
  */
 public class DefaultEvent implements Event {
 
-    private final Log log = LogFactory.getLog(getClass());
     private String name;
     private InteractionType interactionType;
 
@@ -34,13 +31,21 @@ public class DefaultEvent implements Event {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DefaultEvent)) return false;
+        if (this == o) {
+        	return true;
+        }
+        if (!(o instanceof DefaultEvent)) {
+        	return false;
+        }
 
         DefaultEvent that = (DefaultEvent) o;
 
-        if (interactionType != that.interactionType) return false;
-        if (!name.equals(that.name)) return false;
+        if (interactionType != that.interactionType) {
+        	return false;
+        }
+        if (!name.equals(that.name)) {
+        	return false;
+        }
 
         return true;
     }

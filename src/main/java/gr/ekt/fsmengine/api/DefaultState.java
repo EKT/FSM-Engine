@@ -15,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class DefaultState implements State {
 	
-	protected final Log log = LogFactory.getLog(getClass());
+	private static final Log LOGGER = LogFactory.getLog(DefaultState.class);
 	private String stateName;
 	private Map<Event, StateChanger> eventTransitionsMap;
 	
@@ -39,14 +39,14 @@ public class DefaultState implements State {
 	}
 	
 	public void processEvent(Event event, StateContext stateContext) throws FsmException {
-		if(log.isDebugEnabled()) {			
-			log.debug("Processing event [" + event + "] for State [" 
+		if(LOGGER.isDebugEnabled()) {			
+			LOGGER.debug("Processing event [" + event + "] for State [" 
 					+ stateContext.getStateName() + " (parent is '" + stateContext.getParent() + "')]");
 		}
 		StateChanger transition = findTransitionForEvent(event);
-		if(log.isDebugEnabled()) {
-			log.debug("Found the following Transition: ");
-			log.debug(transition.toString());			
+		if(LOGGER.isDebugEnabled()) {
+			LOGGER.debug("Found the following Transition: ");
+			LOGGER.debug(transition.toString());			
 		}
 		transition.execute(stateContext);
 	}

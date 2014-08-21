@@ -19,25 +19,24 @@ import org.apache.commons.logging.LogFactory;
  */
 public class DefaultTransition implements Transition {
 	
-	protected final Log log = LogFactory.getLog(getClass());
+	private final static Log LOGGER = LogFactory.getLog(DefaultTransition.class);
 	private State fromState;
 	private State toState;
 	private GuardCondition guardCondition;
 	private List<Action> actions;
 	
 	public void execute(StateContext stateContext) throws InvalidTransitionException {
-		if(getGuardCondition() != null && getGuardCondition().evaluate(stateContext)) {
-			if(log.isDebugEnabled()) {				
-				log.debug("GuardCondition [" + getGuardCondition().toString()+ 
+		if (getGuardCondition() != null && getGuardCondition().evaluate(stateContext)) {
+			if (LOGGER.isDebugEnabled()) {				
+				LOGGER.debug("GuardCondition [" + getGuardCondition().toString()+ 
 						"] evaluated to TRUE. Executing transition...");
 			}
 			proceed(stateContext);
+		} else {
+			LOGGER.info("GuardCondition [" + getGuardCondition() + "] evaluated to false. Transition not executed.");
 		}
-		else {
-			log.info("GuardCondition [" + getGuardCondition() + "] evaluated to false. Transition not executed.");
-		}
-		if(log.isDebugEnabled()) {			
-			log.debug("\n--- ENDING FSM ENGINE ---\n");
+		if (LOGGER.isDebugEnabled()) {			
+			LOGGER.debug("\n--- ENDING FSM ENGINE ---\n");
 		}
 	}
 	
@@ -48,17 +47,16 @@ public class DefaultTransition implements Transition {
 	 * @throws InvalidTransitionException
 	 */
 	private void proceed(StateContext stateContext) throws InvalidTransitionException {
-		if(fromState == null) {
+		if (fromState == null) {
 			throw new InvalidTransitionException("DefaultTransition.fromState " +
 								"can't be null!. Please check again your transition's configuration.");
-		}
-		else if(!fromState.getStateName().equals(stateContext.getStateName())) {
+		} else if(!fromState.getStateName().equals(stateContext.getStateName())) {
 			throw new InvalidTransitionException("Expected fromState [" + fromState.getStateName() + "], " +
 					"while current state is [" + (stateContext != null ? stateContext.getStateName() : null) + "]");
 		}
-		if(toState != null) {
-			if(log.isDebugEnabled()) {				
-				log.debug("Changing State from [" + 
+		if (toState != null) {
+			if (LOGGER.isDebugEnabled()) {				
+				LOGGER.debug("Changing State from [" + 
 						getFromState().getStateName() + "] to [" + getToState().getStateName() + "]");
 			}
 			stateContext.setStateName(toState.getStateName());
@@ -67,17 +65,16 @@ public class DefaultTransition implements Transition {
 	}
 
     private void executeActions(StateContext stateContext) {
-        List<Action> actions = getActions();
+        List<Action> actionsToExecute = getActions();
         int counter = 0;
-        for(Action anAction : actions) {
+        for (Action anAction : actionsToExecute) {
             try {
                 anAction.execute(stateContext);
                 counter++;
-            }
-            catch(ActionException e) {
+            } catch (ActionException e) {
                 //rollback all actions executed so far
-                for(int i = 0; i < counter; i++) {
-                    actions.get(i).rollback(stateContext);
+                for (int i = 0; i < counter; i++) {
+                    actionsToExecute.get(i).rollback(stateContext);
                 }
                 throw e;
             }
@@ -85,7 +82,7 @@ public class DefaultTransition implements Transition {
     }
 
 	public List<Action> getActions() {
-		if(actions == null) {
+		if (actions == null) {
 			return Collections.emptyList();
 		}
 		return actions;
@@ -112,7 +109,7 @@ public class DefaultTransition implements Transition {
 	}
 
 	public GuardCondition getGuardCondition() {
-		if(guardCondition == null) {
+		if (guardCondition == null) {
 			return new AlwaysTrueCondition();
 		}
 		return guardCondition;
@@ -129,13 +126,13 @@ public class DefaultTransition implements Transition {
         .append("fromState", getFromState().getStateName())
         .append("toState", getToState().getStateName())
         .append("guardCondition", conditionToString);
-		if(getActions() != null && getActions().size() > 0) {
+		if (getActions() != null && !getActions().isEmpty()) {
 			sb.append("Actions: ");
-			for(Action anAction : getActions()) {
+			for (Action anAction : getActions()) {
 				sb.append("    " + anAction);
 			}
-		}
-		else {
+			
+		} else {
 			sb.append("No actions found");
 		}
 		return sb.toString();
