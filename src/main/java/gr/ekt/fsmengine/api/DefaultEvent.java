@@ -32,19 +32,19 @@ public class DefaultEvent implements Event {
     @Override
     public boolean equals(Object o) {
         if (this == o) {
-        	return true;
+            return true;
         }
         if (!(o instanceof DefaultEvent)) {
-        	return false;
+            return false;
         }
 
         DefaultEvent that = (DefaultEvent) o;
 
         if (interactionType != that.interactionType) {
-        	return false;
+            return false;
         }
         if (!name.equals(that.name)) {
-        	return false;
+            return false;
         }
 
         return true;

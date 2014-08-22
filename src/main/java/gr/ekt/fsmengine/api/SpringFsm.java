@@ -7,8 +7,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 /**
  * Example implementation of the {@link FiniteStateMachine} interface that depends 
@@ -26,9 +26,10 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
     boolean transactional = false;
     private ApplicationContext applicationContext;
     private static final Log LOGGER = LogFactory.getLog(SpringFsm.class);
-	
-	public void processEvent(Event event, StateContext stateContext) throws FsmException {
-		if(!isValidEvent(stateContext, event)) {
+    private static final String SEPARATOR_CHAR = "_";
+    
+    public void processEvent(Event event, StateContext stateContext) {
+        if(!isValidEvent(stateContext, event)) {
             throw new InvalidEventException("Event [${event?.name}] for State [${stateContext?.stateName}] is not valid!");
         }
         if (LOGGER.isDebugEnabled()) {
@@ -36,18 +37,18 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
         }
         State currentState = getCurrentState(stateContext);
         currentState.processEvent(event, stateContext);
-	}
+    }
 
-	public boolean isValidEvent(StateContext stateContext, Event event) throws FsmException {
-		return getValidEvents(stateContext).contains(event);
-	}
+    public boolean isValidEvent(StateContext stateContext, Event event) {
+        return getValidEvents(stateContext).contains(event);
+    }
 
-	public Collection<Event> getValidEvents(StateContext stateContext) throws FsmException {
-		Map<Event, StateChanger> eventTransitionsMap = getCurrentState(stateContext).getEventTransitionsMap();
+    public Collection<Event> getValidEvents(StateContext stateContext) {
+        Map<Event, StateChanger> eventTransitionsMap = getCurrentState(stateContext).getEventTransitionsMap();
         return eventTransitionsMap.keySet();
-	}
-	
-	public State getCurrentState(StateContext stateContext) throws FsmException {
+    }
+    
+    public State getCurrentState(StateContext stateContext) {
         if(stateContext == null) {
             throw new InvalidStateContextException("StateContext can't be null.");
         } else if(stateContext.getStateName() == null) {
@@ -56,45 +57,43 @@ public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
         }
         return getStateBeanForStateName(getKey(stateContext.getStateName()));
     }
-	
-	private static final String SEPARATOR_CHAR = "_";
-	
-	/**
-	 * Returns a suitable representation of each constant, mostly meant 
-	 * to be used for retrieving bean objects from the ApplicationContext. 
-	 * 
-	 * For example THIS_ENUM_CONSTANT will become thisEnumConstant
-	 */
-	public String getKey(String name) {
-		String[] tokens = StringUtils.split(name, SEPARATOR_CHAR);
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < tokens.length; i++) {
-			String token = tokens[i].toLowerCase();
-			if(i != 0) {
-				token = StringUtils.capitalize(token);
-			}
-			sb.append(token);
-		}
-		return sb.toString();
-	}
+        
+    /**
+     * Returns a suitable representation of each constant, mostly meant 
+     * to be used for retrieving bean objects from the ApplicationContext. 
+     * 
+     * For example THIS_ENUM_CONSTANT will become thisEnumConstant
+     */
+    public String getKey(String name) {
+        String[] tokens = StringUtils.split(name, SEPARATOR_CHAR);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tokens.length; i++) {
+            String token = tokens[i].toLowerCase();
+            if(i != 0) {
+                token = StringUtils.capitalize(token);
+            }
+            sb.append(token);
+        }
+        return sb.toString();
+    }
 
     /**
      * A state bean in the ApplicationContext is identified by appending the STATE_BEAN_SUFFIX
      * to the current state key. For example, if the current order state key is "orderPlaced",
      * the corresponding State bean in the Spring ApplicationContext, should be "orderPlacedState".
      */
-    public State getStateBeanForStateName(String stateNameKey) throws InvalidStateNameException {
+    public State getStateBeanForStateName(String stateNameKey) {
         try {
             return (State) applicationContext.getBean(stateNameKey);
         } catch (BeansException e) {
-        	String message = "No State Bean found for StateName with key [" + stateNameKey + "]";
-        	LOGGER.error(message, e);
+            String message = "No State Bean found for StateName with key [" + stateNameKey + "]";
+            LOGGER.error(message, e);
             throw new InvalidStateNameException(message);
         }
     }
 
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-	}
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
 }

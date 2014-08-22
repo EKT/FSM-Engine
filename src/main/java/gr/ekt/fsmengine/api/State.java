@@ -1,6 +1,3 @@
-/**
- * 
- */
 package gr.ekt.fsmengine.api;
 
 import java.util.Map;
@@ -13,14 +10,14 @@ import java.util.Map;
  * @author Dimitris Zavaliadis
  */
 public interface State {
-	
-	String getStateName();
-	
-	void setStateName(String stateName);
-	
-	Map<Event, StateChanger> getEventTransitionsMap();
-	
-	void setEventTransitionsMap(Map<Event, StateChanger> eventTransitionsMap);
-	
-	void processEvent(Event event, StateContext stateContext) throws FsmException;
+    
+    String getStateName();
+    
+    void setStateName(String stateName);
+    
+    Map<Event, StateChanger> getEventTransitionsMap();
+    
+    void setEventTransitionsMap(Map<Event, StateChanger> eventTransitionsMap);
+    
+    void processEvent(Event event, StateContext stateContext);
 } 

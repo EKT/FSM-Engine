@@ -14,12 +14,12 @@ package gr.ekt.fsmengine.api;
  * @author Dimitris Zavaliadis
  */
 public interface StateContext {
-	
-	public String getStateName();
-	
-	public void setStateName(String stateName);	
-	
-	public boolean isDone();
-	
-	public StateContext getParent();
+    
+    public String getStateName();
+    
+    public void setStateName(String stateName);    
+    
+    public boolean isDone();
+    
+    public StateContext getParent();
 }

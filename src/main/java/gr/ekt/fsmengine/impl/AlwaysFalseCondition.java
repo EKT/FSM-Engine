@@ -12,11 +12,11 @@ import gr.ekt.fsmengine.api.StateContext;
  */
 public class AlwaysFalseCondition extends AbstractGuardCondition {
 
-	/* (non-Javadoc)
-	 * @see gr.ekt.liboms.model.fsm.GuardCondition#evaluate(gr.ekt.liboms.model.fsm.StateContext)
-	 */
-	public boolean evaluate(StateContext stateContext) {
-		return Boolean.FALSE;
-	}
+    /* (non-Javadoc)
+     * @see gr.ekt.liboms.model.fsm.GuardCondition#evaluate(gr.ekt.liboms.model.fsm.StateContext)
+     */
+    public boolean evaluate(StateContext stateContext) {
+        return Boolean.FALSE;
+    }
 
 }

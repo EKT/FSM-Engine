@@ -8,7 +8,7 @@ package gr.ekt.fsmengine.api;
  *
  */
 public interface GuardCondition {
-	
-	public boolean evaluate(StateContext stateContext);
-	
+    
+    public boolean evaluate(StateContext stateContext);
+    
 }

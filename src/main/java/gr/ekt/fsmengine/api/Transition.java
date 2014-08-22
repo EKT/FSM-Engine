@@ -13,22 +13,22 @@ import java.util.List;
  * @author Dimitris Zavaliadis
  */
 public interface Transition extends StateChanger {
-	
-	State getFromState();
-	
-	void setFromState(State fromState);
-	
-	State getToState();
-	
-	void setToState(State toState);
-	
-	GuardCondition getGuardCondition();
-	
-	void setGuardCondition(GuardCondition guardCondition);
-	
-	List<Action> getActions();
-	
-	void setActions(List<Action> actions);
-	
-	void execute(StateContext stateContext) throws InvalidTransitionException;
+    
+    State getFromState();
+    
+    void setFromState(State fromState);
+    
+    State getToState();
+    
+    void setToState(State toState);
+    
+    GuardCondition getGuardCondition();
+    
+    void setGuardCondition(GuardCondition guardCondition);
+    
+    List<Action> getActions();
+    
+    void setActions(List<Action> actions);
+    
+    void execute(StateContext stateContext);
 }
