@@ -18,7 +18,7 @@ public class InvalidTransitionException extends FsmException {
      * 
      */
     public InvalidTransitionException() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
     /**
@@ -27,7 +27,6 @@ public class InvalidTransitionException extends FsmException {
      */
     public InvalidTransitionException(String message, Throwable cause) {
         super(message, cause);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -35,7 +34,6 @@ public class InvalidTransitionException extends FsmException {
      */
     public InvalidTransitionException(String message) {
         super(message);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -43,6 +41,5 @@ public class InvalidTransitionException extends FsmException {
      */
     public InvalidTransitionException(Throwable cause) {
         super(cause);
-        // TODO Auto-generated constructor stub
     }
 }

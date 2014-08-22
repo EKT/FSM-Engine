@@ -17,7 +17,7 @@ public class InvalidEventException extends FsmException {
      * 
      */
     public InvalidEventException() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
     /**
@@ -26,7 +26,6 @@ public class InvalidEventException extends FsmException {
      */
     public InvalidEventException(String message, Throwable cause) {
         super(message, cause);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,7 +33,6 @@ public class InvalidEventException extends FsmException {
      */
     public InvalidEventException(String message) {
         super(message);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -42,6 +40,5 @@ public class InvalidEventException extends FsmException {
      */
     public InvalidEventException(Throwable cause) {
         super(cause);
-        // TODO Auto-generated constructor stub
     }
 }

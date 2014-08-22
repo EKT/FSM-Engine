@@ -41,7 +41,6 @@ public class DefaultTransition implements Transition {
     }
     
     /**
-     * TODO check how the sequence of events should occur
      * 
      * @param stateContext
      * @throws InvalidTransitionException

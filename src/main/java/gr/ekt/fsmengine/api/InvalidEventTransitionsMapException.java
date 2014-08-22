@@ -17,7 +17,7 @@ public class InvalidEventTransitionsMapException extends FsmException {
      * 
      */
     public InvalidEventTransitionsMapException() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
     /**
@@ -26,7 +26,6 @@ public class InvalidEventTransitionsMapException extends FsmException {
      */
     public InvalidEventTransitionsMapException(String message, Throwable cause) {
         super(message, cause);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,7 +33,6 @@ public class InvalidEventTransitionsMapException extends FsmException {
      */
     public InvalidEventTransitionsMapException(String message) {
         super(message);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -42,7 +40,6 @@ public class InvalidEventTransitionsMapException extends FsmException {
      */
     public InvalidEventTransitionsMapException(Throwable cause) {
         super(cause);
-        // TODO Auto-generated constructor stub
     }
 
 }

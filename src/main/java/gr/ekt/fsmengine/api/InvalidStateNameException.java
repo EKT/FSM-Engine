@@ -17,7 +17,6 @@ public class InvalidStateNameException extends FsmException {
      * 
      */
     public InvalidStateNameException() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -26,7 +25,6 @@ public class InvalidStateNameException extends FsmException {
      */
     public InvalidStateNameException(String message, Throwable cause) {
         super(message, cause);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,7 +32,6 @@ public class InvalidStateNameException extends FsmException {
      */
     public InvalidStateNameException(String message) {
         super(message);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -42,6 +39,5 @@ public class InvalidStateNameException extends FsmException {
      */
     public InvalidStateNameException(Throwable cause) {
         super(cause);
-        // TODO Auto-generated constructor stub
     }
 }

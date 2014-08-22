@@ -9,8 +9,6 @@ package gr.ekt.fsmengine.api;
  * since typically it will have to be persisted in the database, and therefore using a 
  * regular object would introduce unnecessary complexities to the app.
  * 
- * TODO What about custom Hibernate data types?
- * 
  * @author Dimitris Zavaliadis
  */
 public interface StateContext {

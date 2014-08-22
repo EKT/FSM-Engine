@@ -15,21 +15,17 @@ public class InvalidStateContextException extends FsmException {
 
     public InvalidStateContextException() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     public InvalidStateContextException(String message, Throwable cause) {
         super(message, cause);
-        // TODO Auto-generated constructor stub
     }
 
     public InvalidStateContextException(String message) {
         super(message);
-        // TODO Auto-generated constructor stub
     }
 
     public InvalidStateContextException(Throwable cause) {
         super(cause);
-        // TODO Auto-generated constructor stub
     }
 }
