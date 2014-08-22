@@ -1,4 +1,13 @@
-package gr.ekt.fsmengine.api;
+package gr.ekt.fsmengine.impl;
+
+import gr.ekt.fsmengine.api.Event;
+import gr.ekt.fsmengine.api.FiniteStateMachine;
+import gr.ekt.fsmengine.api.InvalidEventException;
+import gr.ekt.fsmengine.api.InvalidStateContextException;
+import gr.ekt.fsmengine.api.InvalidStateNameException;
+import gr.ekt.fsmengine.api.State;
+import gr.ekt.fsmengine.api.StateChanger;
+import gr.ekt.fsmengine.api.StateContext;
 
 import java.util.Collection;
 import java.util.Map;

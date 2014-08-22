@@ -1,7 +1,7 @@
 package gr.ekt.fsmengine.example5;
 
 import gr.ekt.fsmengine.api.Event;
-import gr.ekt.fsmengine.api.SpringFsm;
+import gr.ekt.fsmengine.impl.SpringFsm;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,7 @@
-package gr.ekt.fsmengine.api;
+package gr.ekt.fsmengine.impl;
+
+import gr.ekt.fsmengine.api.Event;
+import gr.ekt.fsmengine.api.InteractionType;
 
 
 /**

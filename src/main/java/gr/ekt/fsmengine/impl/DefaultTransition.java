@@ -1,9 +1,15 @@
 /**
  * 
  */
-package gr.ekt.fsmengine.api;
+package gr.ekt.fsmengine.impl;
 
-import gr.ekt.fsmengine.impl.AlwaysTrueCondition;
+import gr.ekt.fsmengine.api.Action;
+import gr.ekt.fsmengine.api.ActionException;
+import gr.ekt.fsmengine.api.GuardCondition;
+import gr.ekt.fsmengine.api.InvalidTransitionException;
+import gr.ekt.fsmengine.api.State;
+import gr.ekt.fsmengine.api.StateContext;
+import gr.ekt.fsmengine.api.Transition;
 
 import java.util.Collections;
 import java.util.List;

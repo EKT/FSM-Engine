@@ -1,4 +1,8 @@
-package gr.ekt.fsmengine.api;
+package gr.ekt.fsmengine.impl;
+
+import gr.ekt.fsmengine.api.Branch;
+import gr.ekt.fsmengine.api.StateContext;
+import gr.ekt.fsmengine.api.Transition;
 
 import java.util.List;
 import java.util.Collections;
