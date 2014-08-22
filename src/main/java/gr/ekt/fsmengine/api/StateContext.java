@@ -13,11 +13,11 @@ package gr.ekt.fsmengine.api;
  */
 public interface StateContext {
     
-    public String getStateName();
+    String getStateName();
     
-    public void setStateName(String stateName);    
+    void setStateName(String stateName);    
     
-    public boolean isDone();
+    boolean isDone();
     
-    public StateContext getParent();
+    StateContext getParent();
 }

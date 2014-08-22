@@ -32,7 +32,6 @@ import org.springframework.context.ApplicationContextAware;
  */
 public class SpringFsm implements FiniteStateMachine, ApplicationContextAware {
 
-    boolean transactional = false;
     private ApplicationContext applicationContext;
     private static final Log LOGGER = LogFactory.getLog(SpringFsm.class);
     private static final String SEPARATOR_CHAR = "_";
