@@ -57,7 +57,7 @@ public class DefaultTransition implements Transition {
                                 "can't be null!. Please check again your transition's configuration.");
         } else if(!fromState.getStateName().equals(stateContext.getStateName())) {
             throw new InvalidTransitionException("Expected fromState [" + fromState.getStateName() + "], " +
-                    "while current state is [" + (stateContext != null ? stateContext.getStateName() : null) + "]");
+                    "while current state is [" + stateContext.getStateName() + "]");
         }
         if (toState != null) {
             if (LOGGER.isDebugEnabled()) {                
@@ -126,7 +126,7 @@ public class DefaultTransition implements Transition {
 
     @Override
     public String toString() {
-        String conditionToString = getGuardCondition() != null ? getGuardCondition().toString() : "No guard condition found";
+        String conditionToString = getGuardCondition().toString();
         ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
         .append("fromState", getFromState().getStateName())
         .append("toState", getToState().getStateName())
